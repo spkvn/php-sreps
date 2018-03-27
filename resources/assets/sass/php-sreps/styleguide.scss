@@ -1,0 +1,46 @@
+$bgGreen : #60c1a8;
+
+.bg-white{
+  background-color:white;
+}
+.bg-green {
+  background-color: $bgGreen;
+  color:white;
+}
+
+.rounded-corners {
+  border-radius: 5px;
+}
+
+.jumbotron.bg-green {
+  color: white;
+
+  hr {
+    border-color:white;
+    opacity:0.7;
+  }
+}
+
+.fade-button{
+  color:white;
+  border: 1px solid white;
+  border-radius: 5px;
+  padding: 5px 10px;
+  transition: background-color 0.25s linear, color 0.25s linear;
+
+  &:hover{
+    background-color:white;
+    color:$bgGreen;
+    text-decoration:none;
+  }
+
+  &.bg-green {
+    color:white;
+    border-color:$bgGreen;
+    background-color: $bgGreen;
+    &:hover {
+      background-color: transparent;
+      color: $bgGreen;
+    }
+  }
+}
