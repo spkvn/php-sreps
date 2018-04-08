@@ -58,9 +58,7 @@
                 <div class="row py-1">
                     <div class="col">
                         <label for="comments">Comments:</label>
-                        <textarea name="comments" id="" cols="30" rows="10" class="form-control" placeholder="Comments about product">
-                            {!! $product->comments !!}
-                        </textarea>
+                        <textarea name="comments" id="" cols="30" rows="10" class="form-control" placeholder="Comments about product">{!! $product->comments !!}</textarea>
                     </div>
                 </div>
 
