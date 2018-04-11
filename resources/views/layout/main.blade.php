@@ -22,7 +22,7 @@
                 <a href="/products" class="nav-link">Products</a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link">Sales</a>
+                <a href="/sales" class="nav-link">Sales</a>
             </li>
             <li class="nav-item">
                 <a href="#" class="nav-link">Reports</a>

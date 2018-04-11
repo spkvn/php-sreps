@@ -35,3 +35,5 @@ Route::post('/products/{product}', 'ProductController@update')->name('products.u
 
 // Route to delete a product
 Route::post('/products/{product}/destroy', 'ProductController@destroy')->name('products.destroy');
+
+Route::get('/sales', 'SalesController@index')->name('sales.index');
