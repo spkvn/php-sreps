@@ -24,7 +24,7 @@ class SalesController extends Controller
     }
 
     /**
-     * Returns a view used to create a new Product
+     * Returns a view used to create a new Sale
      *
      * @return \Illuminate\View\View
      */
@@ -34,7 +34,7 @@ class SalesController extends Controller
     }
 
     /**
-     * Stores the request data in the database as a Product
+     * Stores the request data in the database as a Sale
      *
      * @param Request $request (Form Data)
      * @return \Illuminate\Http\RedirectResponse
@@ -48,14 +48,14 @@ class SalesController extends Controller
             'total' => $request->total
         ]);
 
-        // Redirects the user back to the route /products/index
+        // Redirects the user back to the route /sales/index
         return redirect()->route('sales.index');
     }
 
     /**
-     * Returns the form used to edit an existing Product
+     * Returns the form used to edit an existing Sale
      *
-     * @param Product $product
+     * @param Sale $sale
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit(Sale $sale)
@@ -66,10 +66,10 @@ class SalesController extends Controller
     }
 
     /**
-     * Updates the product specified as a route parameter, then
+     * Updates the sale specified as a route parameter, then
      * redirects back to the index page
      *
-     * @param Product $product - Route Parameter
+     * @param Product $sale - Route Parameter
      * @param Request $request - Form Data
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -86,9 +86,9 @@ class SalesController extends Controller
     }
 
     /**
-     * Deletes the product from the database
+     * Deletes the sale from the database
      *
-     * @param Product $product - Route Parameter
+     * @param Product $sale - Route Parameter
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */
