@@ -43,13 +43,12 @@
 					
                     <div class="col-3">
                         <label for="total">Total:</label>
-                        <input type="number" name="Total" class="form-control" placeholder="Total Price">
+                        <input type="number" name="total" class="form-control" placeholder="Total Price">
                     </div>
-
-					<div class="row py-5 text-center">
-						<div class="col">
-							<input type="submit" class="px-5 bg-green fade-button" value="Create">
-						</div>
+				</div>
+				<div class="row py-5 text-center">
+					<div class="col">
+						<input type="submit" class="px-5 bg-green fade-button" value="Create">
 					</div>
 				</div>
             </form>
