@@ -38,3 +38,7 @@ Route::post('/products/{product}/destroy', 'ProductController@destroy')->name('p
 
 Route::get('/sales', 'SalesController@index')->name('sales.index');
 Route::get('/sales/create', 'SalesController@create')->name('sales.create');
+Route::get('/sales/{sale}', 'SalesController@edit')->name('sales.edit');
+Route::post('/sales', 'SalesController@store')->name('sales.store');
+Route::post('/sales/{sale}', 'SalesController@update')->name('sales.update');
+Route::post('/sales/{sale}/destroy', 'SalesController@destroy')->name('sales.destroy');
