@@ -23,6 +23,8 @@
                         <th scope="col">Quantity</th>
                         <th scope="col">Total</th>
                         <th scope="col">Date</th>
+						<th scope="col">Edit</th>
+						<th scope="col">Delete</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -37,11 +39,13 @@
                             <td>{{ $sale->customer }}</td>
                             <td>{{ $sale->code }}</td>
                             <td>{{ $sale->quantity }}</td>
-                            <td><!--<a class="btn btn-secondary" href="{{route('sales.edit', $product->id)}}">--><a>Edit</a></td>
+							<td>{{ $sale->total }}</td>
+							<td>{{ $sale->created_at }}</td>
+                            <td><a class="btn btn-secondary" href="{{route('sales.edit', $sale->id)}}">Edit</a></td>
                             <td>
-                                <!--<form class="delete-form" action="{{route('products.destroy',$product->id)}}" method="POST">
+                                <form class="delete-form" action="{{route('sales.destroy',$sale->id)}}" method="POST">
                                     {{csrf_field()}}
-                                </form>-->
+                                </form>
                                 <button class="delete-button btn btn-dark">Delete</button>
                             </td>
                         </tr>
