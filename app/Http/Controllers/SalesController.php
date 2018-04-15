@@ -61,7 +61,7 @@ class SalesController extends Controller
     public function edit(Sale $sale)
     {
         return view('sales.edit', [
-            'sale' => $product
+            'sale' => $sale
         ]);
     }
 
