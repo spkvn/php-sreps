@@ -6,7 +6,7 @@
             <p>Here's the form to update the product <strong>{{$product->name}}</strong></p>
         </div>
         <div class="col-3 text-center py-4">
-            <a href="/products/create" class="fade-button">Product List</a>
+            <a href="/products" class="fade-button">Product List</a>
         </div>
     </div>
 
