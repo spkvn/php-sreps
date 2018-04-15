@@ -7,7 +7,7 @@
             <p>Here are the sales completed in the database</p>
         </div>
         <div class="col-2 text-center py-4">
-            <a href="#" class="fade-button">New Sale</a>
+            <a href="/sales/create" class="fade-button">New Sale</a>
         </div>
     </div>
 
