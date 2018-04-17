@@ -16,4 +16,8 @@ class Sale extends Model
 
     // Only name can be assigned
     //protected $fillable = ['name'];
+
+    public function product(){
+        return $this->belongsTo(Product::class);
+    }
 }

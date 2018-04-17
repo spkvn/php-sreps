@@ -38,6 +38,6 @@
 {{--
     So we can include script tags for different views.
 --}}
-@yield('javascript')
+@stack('javascript')
 </body>
 </html>
