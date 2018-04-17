@@ -1,0 +1,3 @@
+When creating a product, price must be an integer
+When creating a product, no field can be empty
+	Specifically, comments should probably be able to be left empty
