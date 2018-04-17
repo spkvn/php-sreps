@@ -3,6 +3,7 @@
 namespace PHPSREPS\Http\Controllers;
 
 use Illuminate\Http\Request;
+use PHPSREPS\Product;
 use PHPSREPS\Sale;
 
 class SalesController extends Controller
@@ -45,6 +46,7 @@ class SalesController extends Controller
             'customer' => $request->customer,
             'code' => $request->code,
             'quantity' => $request->quantity,
+            'product_id' => $request->product,
             'total' => $request->total
         ]);
 
@@ -61,7 +63,8 @@ class SalesController extends Controller
     public function edit(Sale $sale)
     {
         return view('sales.edit', [
-            'sale' => $sale
+            'sale' => $sale,
+            'product' => $sale->product
         ]);
     }
 
@@ -79,6 +82,7 @@ class SalesController extends Controller
             'customer' => $request->customer,
             'code' => $request->code,
             'quantity' => $request->quantity,
+            'product_id' => $request->product,
             'total' => $request->total
         ]);
 
@@ -97,5 +101,27 @@ class SalesController extends Controller
         $sale->delete();
 
         return redirect()->route('sales.index');
+    }
+
+
+    public function autocompleteResults(Request $request)
+    {
+        // get the name from the request; concat the SQL wildcard characters
+        $name = isset($request->name)? '%'.$request->name.'%': "";
+
+        // search products table for the name
+        $similarProducts = Product::where('name','like',$name)
+            ->get();
+
+        $jsonItem = null;
+
+        foreach($similarProducts as $product){
+            $jsonItem[] = [
+                'id' => $product->id,
+                'name' => $product->name,
+                'price' => $product->price
+            ];
+        }
+        return response()->json($jsonItem);
     }
 }

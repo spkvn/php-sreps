@@ -44,12 +44,15 @@
                 </div>
 
                 <div class="row py-1">
-                    <div class="col-3">
+                    <div class="col-4">
                         <label for="quantity">Quantity:</label>
                         <input type="number" name="quantity" class="form-control" placeholder="Quantity of Product">
                     </div>
-
-                    <div class="col-9">
+                    <div class="col-4">
+                        <label for="price">Price:</label>
+                        <input type="number" name="price" class="form-control" placeholder="Price of Product">
+                    </div>
+                    <div class="col-4">
                         <label for="supplier">Supplier:</label>
                         <input type="text" name="supplier" class="form-control" placeholder="Product Supplier">
                     </div>
