@@ -124,7 +124,8 @@ class SalesController extends Controller
             $jsonItem[] = [
                 'id' => $product->id,
                 'name' => $product->name,
-                'price' => $product->price
+                'price' => $product->price,
+                'code' => $product->code
             ];
         }
         return response()->json($jsonItem);

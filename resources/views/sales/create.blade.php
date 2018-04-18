@@ -32,7 +32,7 @@
                     </div>
                     <div class="col">
                         <label for="code">Code:</label>
-                        <input type="text" name="code" class="form-control" placeholder="Sale Code">
+                        <input type="text" name="code" id="product-code" class="form-control" placeholder="Sale Code" readonly>
                     </div>
                 </div>
                 <div class="row py-1">
@@ -84,7 +84,7 @@
     function generateButtonsHtmlString(products){
         var htmlString = '';
         for(var i = 0; i < products.length; i++){
-            htmlString += '<p>'+products[i].name+' <span class="px-2 bg-green fade-button confirm-button" data-id="'+products[i].id+'" data-price="'+products[i].price+'">Confirm</span></p>'
+            htmlString += '<p>'+products[i].name+' <span class="px-2 bg-green fade-button confirm-button" data-id="'+products[i].id+'" data-code="'+products[i].code+'" data-price="'+products[i].price+'">Confirm</span></p>'
         }
         return htmlString
     }
@@ -106,8 +106,11 @@
     function saveSelection(){
         var id = $(this).data('id');
         var price = $(this).data('price');
+        var code = $(this).data('code');
+        console.log(price)
         $('#product-id').val(id);
         $('#product-price').val(price);
+        $('#product-code').val(code);
         updatePrice();
     }
 
@@ -128,7 +131,6 @@
                 _token : '{{csrf_token()}}',
                 name  : name
             },
-            
             success: function(response){
                 $('#product-confirm').empty();
                 $('#product-id').val(null);
