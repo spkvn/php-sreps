@@ -38,7 +38,7 @@
                 <div class="row py-1">
                     <div class="col">
                         <label for="name">Product Name:</label>
-                        <select name="name">
+                        <select name="name" id="product-name">
                             <option value="" disabled selected>Select a Product</option>
                         @forelse ($products as $product)
                             <option value="{{$product->name}}">{{$product->name}}</option>
@@ -48,7 +48,7 @@
                         </select>
                     </div>
                     <input type="hidden" name="product" id="product-id">
-                    <input type="hidden" id="product-price">
+                    <input type="hidden" id="product-price" value="">
                     <div class="col" id="product-confirm">
 
                     </div>
@@ -106,7 +106,6 @@
     function saveSelection(){
         var id = $(this).data('id');
         var price = $(this).data('price');
-
         $('#product-id').val(id);
         $('#product-price').val(price);
         updatePrice();
@@ -129,6 +128,7 @@
                 _token : '{{csrf_token()}}',
                 name  : name
             },
+            
             success: function(response){
                 $('#product-confirm').empty();
                 $('#product-id').val(null);
@@ -143,7 +143,6 @@
             }
         });
     });
-
     $('#quantity').on('input',updatePrice);
 </script>
 @endpush
