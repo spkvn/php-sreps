@@ -29,10 +29,12 @@
                     <div class="col">
                         <label for="name">Name:</label>
                         <input type="text" name="name" value="{{$product->name}}" class="form-control" placeholder="Product Name">
+                        @include('utilities.errors',['errors' => $errors->get('name')])
                     </div>
                     <div class="col">
                         <label for="code">Code:</label>
                         <input type="text" name="code" value="{{$product->code}}" class="form-control" placeholder="Product Code">
+                        @include('utilities.errors',['errors' => $errors->get('code')])
                     </div>
                 </div>
 
@@ -40,18 +42,26 @@
                     <div class="col">
                         <label for="description">Description:</label>
                         <input type="text" name="description" value="{{$product->description}}" class="form-control" placeholder="Product Description">
+                        @include('utilities.errors',['errors' => $errors->get('description')])
                     </div>
                 </div>
 
                 <div class="row py-1">
-                    <div class="col-3">
+                    <div class="col-4">
                         <label for="quantity">Quantity:</label>
                         <input type="number" name="quantity" value="{{$product->quantity}}" class="form-control" placeholder="Quantity of Product">
+                        @include('utilities.errors',['errors' => $errors->get('quantity')])
+                    </div>
+                    <div class="col-4">
+                        <label for="price">Price:</label>
+                        <input type="number" name="price" value="{{$product->price}}" class="form-control" placeholder="Price of Product">
+                        @include('utilities.errors',['errors' => $errors->get('price')])
                     </div>
 
-                    <div class="col-9">
+                    <div class="col-4">
                         <label for="supplier">Supplier:</label>
                         <input type="text" name="supplier" value="{{$product->supplier}}" class="form-control" placeholder="Product Supplier">
+                        @include('utilities.errors',['errors' => $errors->get('supplier')])
                     </div>
                 </div>
 
@@ -59,6 +69,7 @@
                     <div class="col">
                         <label for="comments">Comments:</label>
                         <textarea name="comments" id="" cols="30" rows="10" class="form-control" placeholder="Comments about product">{!! $product->comments !!}</textarea>
+                        @include('utilities.errors',['errors' => $errors->get('comments')])
                     </div>
                 </div>
 

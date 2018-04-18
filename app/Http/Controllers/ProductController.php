@@ -3,6 +3,7 @@
 namespace PHPSREPS\Http\Controllers;
 
 use Illuminate\Http\Request;
+use PHPSREPS\Http\Requests\ProductRequest;
 use PHPSREPS\Product;
 
 class ProductController extends Controller
@@ -39,7 +40,7 @@ class ProductController extends Controller
      * @param Request $request (Form Data)
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
         $product = Product::create([
             'name' => $request->name,
@@ -76,7 +77,7 @@ class ProductController extends Controller
      * @param Request $request - Form Data
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Product $product, Request $request)
+    public function update(Product $product, ProductRequest $request)
     {
         $product->update([
             'name' => $request->name,
