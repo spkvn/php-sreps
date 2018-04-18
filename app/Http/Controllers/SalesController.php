@@ -31,7 +31,10 @@ class SalesController extends Controller
      */
     public function create()
     {
-        return view('sales.create');
+        $products = Product::all();
+        return view('sales.create', [
+            'products' => $products
+        ]);
     }
 
     /**
@@ -62,6 +65,8 @@ class SalesController extends Controller
      */
     public function edit(Sale $sale)
     {
+        $products = Product::all();
+
         return view('sales.edit', [
             'sale' => $sale,
             'product' => $sale->product

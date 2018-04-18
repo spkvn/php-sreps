@@ -37,8 +37,15 @@
                 </div>
                 <div class="row py-1">
                     <div class="col">
-                        <label for="name">Name:</label>
-                        <input type="text" name="name" class="form-control" id="product-name" placeholder="Product Name">
+                        <label for="name">Product Name:</label>
+                        <select name="name">
+                            <option value="" disabled selected>Select a Product</option>
+                        @forelse ($products as $product)
+                            <option value="{{$product->name}}">{{$product->name}}</option>
+                        @empty
+                            <option value="No Products">No Prodcuts</option>
+                        @endforelse   
+                        </select>
                     </div>
                     <input type="hidden" name="product" id="product-id">
                     <input type="hidden" id="product-price">
