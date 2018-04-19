@@ -20,10 +20,9 @@
                         <th scope="col">#</th>
                         <th scope="col">Customer</th>
                         <th scope="col">Code</th>
-                        <th scope="col">Quantity</th>
                         <th scope="col">Total</th>
                         <th scope="col">Date</th>
-						<th scope="col">Edit</th>
+						{{--<th scope="col">Edit</th>--}}
 						<th scope="col">Delete</th>
                     </tr>
                 </thead>
@@ -38,10 +37,9 @@
                             <td>{{ $sale->id }}</td>
                             <td>{{ $sale->customer }}</td>
                             <td>{{ $sale->code }}</td>
-                            <td>{{ $sale->quantity }}</td>
 							<td>{{ $sale->total }}</td>
-							<td>{{ $sale->created_at }}</td>
-                            <td><a class="btn btn-secondary" href="{{route('sales.edit', $sale->id)}}">Edit</a></td>
+							<td>{{ $sale->created_at->diffForHumans()}}</td>
+                            {{--<td><a class="btn btn-secondary" href="{{route('sales.edit', $sale->id)}}">Edit</a></td>--}}
                             <td>
                                 <form class="delete-form" action="{{route('sales.destroy',$sale->id)}}" method="POST">
                                     {{csrf_field()}}
@@ -56,6 +54,7 @@
                             <td></td>
                             <td>No Sales</td>
                             <td></td>
+                            {{--<td></td>--}}
                             <td></td>
                         </tr>
                     @endforelse

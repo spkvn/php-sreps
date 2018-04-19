@@ -32,38 +32,41 @@
                     </div>
                     <div class="col">
                         <label for="code">Code:</label>
-                        <input type="text" name="code" id="product-code" class="form-control" placeholder="Sale Code" readonly>
+                        <input type="text" name="code" id="product-code" class="form-control" placeholder="Sale Code">
                     </div>
                 </div>
                 <div class="row py-1">
-                    <div class="col">
-                        <label for="name">Product Name:</label>
-                        <select name="name" id="product-name">
-                            <option value="" disabled selected>Select a Product</option>
-                        @forelse ($products as $product)
-                            <option value="{{$product->name}}">{{$product->name}}</option>
-                        @empty
-                            <option value="No Products">No Prodcuts</option>
-                        @endforelse   
-                        </select>
+                    <div class="col-9">
+                        <p class="lead">Product:</p>
                     </div>
-                    <input type="hidden" name="product" id="product-id">
-                    <input type="hidden" id="product-price" value="">
-                    <div class="col" id="product-confirm">
-
+                    <div class="col-3">
+                        <p class="lead">Quantity:</p>
                     </div>
                 </div>
-                <div class="row py-1">
-                    <div class="col">
-                        <label for="quantity">Quantity:</label>
-                        <input type="number" name="quantity" id="quantity" class="form-control" placeholder="Quantity of Product">
+                <div class="row py-1 line-item">
+                    <div class="col-9">
+                        <input type="text" name="product_id[]" class="selectize selectize-control">
                     </div>
-					
-                    <div class="col">
-                        <label for="total">Total:</label>
-                        <input type="number" name="total" id="total" class="form-control-plaintext" placeholder="Total Price" readonly>
+                    <div class="col-3">
+                        <input type="number" name="quantity[]" class="form-control" placeholder="Product Quantity">
                     </div>
-				</div>
+                </div>
+                <div class="row py-1 line-item">
+                    <div class="col-9">
+                        <input type="text" name="product_id[]" class="selectize selectize-control">
+                    </div>
+                    <div class="col-3">
+                        <input type="number" name="quantity[]" class="form-control" placeholder="Product Quantity">
+                    </div>
+                </div>
+                <div class="row py-1 line-item">
+                    <div class="col-9">
+                        <input type="text" name="product_id[]" class="selectize selectize-control">
+                    </div>
+                    <div class="col-3">
+                        <input type="number" name="quantity[]" class="form-control" placeholder="Product Quantity">
+                    </div>
+                </div>
 
 				<div class="row py-5 text-center">
 					<div class="col">
@@ -76,75 +79,28 @@
 @endsection
 @push('javascript')
 <script>
-    /**
-     * Creates the HTML string which we put back into the page.
-     * @param {array} products
-     * @returns {string}
-     */
-    function generateButtonsHtmlString(products){
-        var htmlString = '';
-        for(var i = 0; i < products.length; i++){
-            htmlString += '<p>'+products[i].name+' <span class="px-2 bg-green fade-button confirm-button" data-id="'+products[i].id+'" data-code="'+products[i].code+'" data-price="'+products[i].price+'">Confirm</span></p>'
-        }
-        return htmlString
-    }
-
-    /**
-     * Updates the total based on product price and quantity.
-     */
-    function updatePrice(){
-        var qty = parseInt($('#quantity').val());
-        var price = parseFloat($('#product-price').val());
-        $('#total').val(qty*price);
-    }
-
-    /**
-     * Sets the hidden input fields in the form to the product's ID
-     * price and id.
-     * Updates price.
-     */
-    function saveSelection(){
-        var id = $(this).data('id');
-        var price = $(this).data('price');
-        var code = $(this).data('code');
-        console.log(price)
-        $('#product-id').val(id);
-        $('#product-price').val(price);
-        $('#product-code').val(code);
-        updatePrice();
-    }
-
-    function resetDependentFields(){
-        $('#product-id').val(null);
-        $('#product-price').val(null);
-        $('#quantity').val(0);
-        $('#total').val(0);
-        $('#product-confirm').empty();
-    }
-
-    $('#product-name').on('input',function(){
-        var name = $(this).val();
-        $.ajax({
-            url: '/sales/autocomplete',
-            method: 'get',
-            data: {
-                _token : '{{csrf_token()}}',
-                name  : name
-            },
-            success: function(response){
-                $('#product-confirm').empty();
-                $('#product-id').val(null);
-                if(response.length > 0){
-                    $('#product-confirm').append(generateButtonsHtmlString(response));
-                    $('.confirm-button').on('click',saveSelection);
+    $('.selectize').selectize({
+        valueField:'id',
+        labelField:'name',
+        searchField:'name',
+        maxItems:1,
+        placeholder:'Search for a product by its name',
+        options:[],
+        load:function(query,callback){
+            $.ajax({
+                url:'/sales/autocomplete',
+                data:{
+                    name: query
+                },
+                success: function(response){
+                    callback(response);
+                },
+                error: function(response){
+                    console.log(response);
+                    callback();
                 }
-            },
-            error: function (error){
-                console.log(error);
-                resetDependentFields();
-            }
-        });
+            });
+        }
     });
-    $('#quantity').on('input',updatePrice);
 </script>
 @endpush

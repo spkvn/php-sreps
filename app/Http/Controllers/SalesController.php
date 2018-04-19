@@ -3,6 +3,7 @@
 namespace PHPSREPS\Http\Controllers;
 
 use Illuminate\Http\Request;
+use PHPSREPS\LineItem;
 use PHPSREPS\Product;
 use PHPSREPS\Sale;
 
@@ -48,10 +49,23 @@ class SalesController extends Controller
         $sale = Sale::create([
             'customer' => $request->customer,
             'code' => $request->code,
-            'quantity' => $request->quantity,
-            'product_id' => $request->product,
-            'total' => $request->total
+            'total' => 0
         ]);
+
+        $total = 0;
+
+        foreach($request->product_id as $key => $lineItem){
+            if($request->product_id[$key] != null && $request->quantity[$key] != null){
+                $li = LineItem::create([
+                    'product_id' => $request->product_id[$key],
+                    'quantity'   => $request->quantity[$key],
+                    'sale_id'   => $sale->id
+                ]);
+                $total += $li->product->price * $li->quantity;
+            }
+        }
+        $sale->total = $total;
+        $sale->save();
 
         // Redirects the user back to the route /sales/index
         return redirect()->route('sales.index');
@@ -123,9 +137,7 @@ class SalesController extends Controller
         foreach($similarProducts as $product){
             $jsonItem[] = [
                 'id' => $product->id,
-                'name' => $product->name,
-                'price' => $product->price,
-                'code' => $product->code
+                'name' => $product->name
             ];
         }
         return response()->json($jsonItem);

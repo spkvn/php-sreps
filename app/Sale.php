@@ -14,10 +14,8 @@ class Sale extends Model
     // All properties can be assigned, except ID
     protected $guarded = ['id'];
 
-    // Only name can be assigned
-    //protected $fillable = ['name'];
-
-    public function product(){
-        return $this->belongsTo(Product::class);
+    public function lineItems()
+    {
+        return $this->hasMany(LineItem::class);
     }
 }

@@ -12,4 +12,13 @@ let mix = require('laravel-mix');
  */
 
 mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css');
+   .sass('resources/assets/sass/app.scss', 'public/css')
+    .combine([
+        'node_modules/jquery/dist/jquery.js',
+        'node_modules/selectize/dist/js/standalone/selectize.js',
+        'node_modules/bootstrap/dist/js/bootstrap.js'
+    ],'public/js/vendor.js')
+    .combine([
+        'node_modules/selectize/dist/css/selectize.css',
+        // 'node_modules/selectize/dist/css/selectize.bootstrap3.css'
+    ],'public/css/vendor.css');
