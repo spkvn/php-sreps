@@ -62,6 +62,11 @@ class SalesController extends Controller
                     'sale_id'   => $sale->id
                 ]);
                 $total += $li->product->price * $li->quantity;
+
+                $prod = $li->product; 
+                $newQuant = $prod->quantity - $li->quantity;
+                $prod->quantity = $newQuant;
+                $prod->save();
             }
         }
         $sale->total = $total;
