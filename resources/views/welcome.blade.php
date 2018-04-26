@@ -22,4 +22,31 @@
             </div>
         </div>
     </div>
+    @if($lowStockProducts->count() > 0)
+    <div class="row bg-white rounded-corners my-5 py-3 ">
+        <div class="col">
+            <p class="lead text-danger text-right">Low-Stock Items:</p>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Item Code</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach($lowStockProducts as $product)
+                    <tr>
+                        <td>{{$product->code}}</td>
+                        <td>{{$product->name}}</td>
+                        <td>{{$product->price}}</td>
+                        <td>{{$product->quantity}}</td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+    @endif
 @endsection

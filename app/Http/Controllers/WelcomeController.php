@@ -11,7 +11,7 @@ class WelcomeController extends Controller
     {
         $lowQuantityProducts = Product::where('quantity', '<', 50)
             ->get();
-        
+
         return view('welcome', [
             'lowStockProducts' => $lowQuantityProducts
         ]);
