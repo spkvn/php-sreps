@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'WelcomeController@home')->name('welcome');
 
 // Route to list all products in the system.
 Route::get('/products', 'ProductController@index')->name('products.index');
