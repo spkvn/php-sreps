@@ -41,3 +41,5 @@ Route::get('/sales/{sale}', 'SalesController@edit')->name('sales.edit');
 Route::post('/sales', 'SalesController@store')->name('sales.store');
 Route::post('/sales/{sale}', 'SalesController@update')->name('sales.update');
 Route::post('/sales/{sale}/destroy', 'SalesController@destroy')->name('sales.destroy');
+
+Route::get('/reports', 'ReportsController@index')->name('reports.index');

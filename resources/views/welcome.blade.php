@@ -18,7 +18,7 @@
                 <a href="/sales" class="fade-button">Sales</a>
             </div>
             <div class="col">
-                <a href="#" class="fade-button">Reports</a>
+                <a href="/reports" class="fade-button">Reports</a>
             </div>
         </div>
     </div>

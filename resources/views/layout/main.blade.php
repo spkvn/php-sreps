@@ -25,7 +25,7 @@
                 <a href="/sales" class="nav-link">Sales</a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link">Reports</a>
+                <a href="/reports" class="nav-link">Reports</a>
             </li>
         </ul>
     </div>
