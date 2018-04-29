@@ -41,10 +41,10 @@
 							<td>{{ $sale->created_at->diffForHumans()}}</td>
                             {{--<td><a class="btn btn-secondary" href="{{route('sales.edit', $sale->id)}}">Edit</a></td>--}}
                             <td>
-                                <form class="delete-form" action="{{route('sales.destroy',$sale->id)}}" method="POST">
+                                <form class="delete-form" id="delete-form" action="{{route('sales.destroy',$sale->id)}}" method="POST">
                                     {{csrf_field()}}
                                 </form>
-                                <button class="delete-button btn btn-dark">Delete</button>
+                                <button class="delete-button btn btn-dark" type="submit"  form="delete-form">Delete</button>
                             </td>
                         </tr>
                     @empty
