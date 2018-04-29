@@ -12,7 +12,7 @@
 
     <div class="row bg-white rounded-corners my-3 py-3 px-3">
         <div class="col">
-            <form action="{{route('sales.store')}}" method="POST">
+            <form action="{{route('sales.store')}}" name="create-form" onsubmit="return validateForm()" method="POST">
 
                 {{--
                     Tip: CSRF Token
@@ -28,7 +28,7 @@
                 <div class="row py-1">
                     <div class="col">
                         <label for="customer">Customer:</label>
-                        <input type="text" name="customer" class="form-control" placeholder="Customer Name">
+                        <input type="text" name="customer" class="form-control" placeholder="Customer Name" required>
                     </div>
                     <div class="col">
                         <label for="code">Code:</label>
@@ -93,6 +93,7 @@
                     name: query
                 },
                 success: function(response){
+                    $("#product-code").val(response[0].code);
                     callback(response);
                 },
                 error: function(response){
@@ -102,5 +103,13 @@
             });
         }
     });
+    function validateForm() {
+        var x = document.forms["create-form"]["code"].value;
+        if (x == "jj") {
+            alert("Code must be filled out");
+            return false;
+        }else
+        return true;
+    }
 </script>
 @endpush

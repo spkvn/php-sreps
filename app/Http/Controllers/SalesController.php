@@ -142,7 +142,8 @@ class SalesController extends Controller
         foreach($similarProducts as $product){
             $jsonItem[] = [
                 'id' => $product->id,
-                'name' => $product->name
+                'name' => $product->name,
+                'code' => $product->code
             ];
         }
         return response()->json($jsonItem);
