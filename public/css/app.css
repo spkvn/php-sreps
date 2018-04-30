@@ -10048,3 +10048,11 @@ a.text-dark:focus {
   color: #60c1a8;
 }
 
+.bar-wrapper div {
+  background-color: #60c1a8;
+  color: white;
+  border-bottom: 1px solid white;
+  padding-bottom: 1px;
+  text-align: right;
+}
+
