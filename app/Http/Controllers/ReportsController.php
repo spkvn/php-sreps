@@ -18,11 +18,12 @@ class ReportsController extends Controller
         return view('reports.index');
     }
 
-    public function salesByDay()
+    public function salesByDay(Request $request)
     {
         // Fetch sum of all sales totals from db, grouped by day
-        // TODO: add where conditions later, limiting the date range?
         $sales = Sale::addSelect(\DB::raw("SUM(total) as `total`, DAY(created_at) as `day`"))
+            ->whereDate('created_at', '>=', $request->start)
+            ->whereDate('created_at', '<=', $request->stop)
             ->groupBy("day")
             ->get();
 

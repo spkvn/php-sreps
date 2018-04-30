@@ -7,13 +7,18 @@
             <p>Reports created based on sales data</p>
         </div>
         <div class="col-2 text-center py-4">
-            <a href="#" class="fade-button">Refresh Reports</a>
+            <a href="#" id="refresh" class="fade-button">Refresh Reports</a>
         </div>
     </div>
 
     <div class="row bg-white rounded-corners my-3 py-3 px-3">
         <div class="col-12" class="controls">
             <p class="lead">Controls</p>
+            <form class="inline-form">
+                <input type="text" class="form-control" id="start" placeholder="YYYY-MM-DD">
+                <input type="text" class="form-control" id="stop" placeholder="YYYY-MM-DD">
+            </form>
+
         </div>
         <div class="col-12">
             <div class="bar-wrapper" id="reportsWrapper">
@@ -30,31 +35,48 @@
     google.charts.setOnLoadCallback(drawChart);
 
     function drawChart() {
+        var startDate = document.querySelector("#start").value;
+        var stopDate = document.querySelector("#stop").value;
+        console.log("start: " + startDate);
+        console.log("stop: " + stopDate);
         $.ajax({
             url: '/reports/salesByDay',
+            data: {
+                start: startDate,
+                stop: stopDate
+            },
             success: function(response){
-                var unprocessedData = [
-                    ['Day', 'Sales']
-                ];
+                if(response.length > 0){
+                    var unprocessedData = [
+                        ['Day', 'Sales']
+                    ];
 
-                response.forEach(function(d){
-                    unprocessedData.push([d.day, parseInt(d.total)]);
-                });
-                console.log(unprocessedData);
+                    response.forEach(function(d){
+                        unprocessedData.push([d.day, parseInt(d.total)]);
+                    });
+                    console.log(unprocessedData);
 
-                var data = google.visualization.arrayToDataTable(unprocessedData);
-                var options = {
-                    title: 'Sales Per Day',
-                    curveType: 'function',
-                    legend: 'right',
-                    pointSize: 5
-                };
+                    var data = google.visualization.arrayToDataTable(unprocessedData);
+                    var options = {
+                        title: 'Sales Per Day',
+                        height:400,
+                        curveType: 'function',
+                        legend: 'right',
+                        pointSize: 5
+                    };
 
-                var chart = new google.visualization.LineChart(document.getElementById('reportsWrapper'));
+                    var chart = new google.visualization.LineChart(document.getElementById('reportsWrapper'));
 
-                chart.draw(data, options);
+                    chart.draw(data, options);
+                } else {
+                    document.querySelector('#reportsWrapper').innerHTML = "<h2>No sales for that date range</h2>"
+                    + "<p> Start: " + startDate + "</p>"
+                    + "<p> Stop: " + stopDate  + "</p>"
+                }
             }
+
         });
     }
+    document.querySelector("#refresh").addEventListener('click',drawChart);
 </script>
 @endpush
