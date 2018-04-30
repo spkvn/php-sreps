@@ -21,9 +21,9 @@ class ReportsController extends Controller
     public function salesByDay(Request $request)
     {
         // Fetch sum of all sales totals from db, grouped by day
-        $sales = Sale::addSelect(\DB::raw("SUM(total) as `total`, DAY(created_at) as `day`"))
-            ->whereDate('created_at', '>=', $request->start)
-            ->whereDate('created_at', '<=', $request->stop)
+        $sales = Sale::addSelect(\DB::raw("SUM(total) as `total`, DATE(created_at) as `day`"))
+            ->whereDate('created_at', '>=', $request->start ?? "1979-01-01") //Input OR 1979
+            ->whereDate('created_at', '<=', $request->stop ?? "2032-01-01")  //Input OR 2032
             ->groupBy("day")
             ->get();
 
