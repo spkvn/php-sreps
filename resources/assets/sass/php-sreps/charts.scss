@@ -1,4 +1,13 @@
 .bar-wrapper {
+  rect {
+    fill: $bgGreen;
+  }
+
+  text {
+    fill: white;
+    font: 10px sans-serif;
+    text-anchor: end;
+  }
   div {
     background-color: $bgGreen;
     color:white;

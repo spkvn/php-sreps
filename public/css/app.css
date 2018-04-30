@@ -10048,6 +10048,16 @@ a.text-dark:focus {
   color: #60c1a8;
 }
 
+.bar-wrapper rect {
+  fill: #60c1a8;
+}
+
+.bar-wrapper text {
+  fill: white;
+  font: 10px sans-serif;
+  text-anchor: end;
+}
+
 .bar-wrapper div {
   background-color: #60c1a8;
   color: white;

@@ -43,3 +43,4 @@ Route::post('/sales/{sale}', 'SalesController@update')->name('sales.update');
 Route::post('/sales/{sale}/destroy', 'SalesController@destroy')->name('sales.destroy');
 
 Route::get('/reports', 'ReportsController@index')->name('reports.index');
+Route::get('/reports/salesByDay', 'ReportsController@salesByDay')->name('reports.index');
