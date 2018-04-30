@@ -15,7 +15,6 @@ mix.js('resources/assets/js/app.js', 'public/js')
    .sass('resources/assets/sass/app.scss', 'public/css')
     .combine([
         'node_modules/jquery/dist/jquery.js',
-        'node_modules/d3/dist/d3.js',
         'node_modules/selectize/dist/js/standalone/selectize.js',
         'node_modules/bootstrap/dist/js/bootstrap.js'
     ],'public/js/vendor.js')

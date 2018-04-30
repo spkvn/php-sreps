@@ -16,67 +16,37 @@
             <p class="lead">Controls</p>
         </div>
         <div class="col-12">
-            <svg class="bar-wrapper" id="reportsWrapper">
+            <div class="bar-wrapper" id="reportsWrapper">
 
-            </svg>
+            </div>
         </div>
 
     </div>
 @endsection
 @push('javascript')
-<script>
-    function initializeBarGraph(data){
-        var $wrapper = $("#reportsWrapper");
-        var width = 320;
-        var barHeight = 20;
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
 
-        console.log("scaleLinear");
-        var x = d3.scaleLinear()
-            .range([0, width]);
+    function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+            ['Year', 'Sales', 'Expenses'],
+            ['2004',  1000,      400],
+            ['2005',  1170,      460],
+            ['2006',  660,       1120],
+            ['2007',  1030,      540]
+        ]);
 
-        x.domain([0, d3.max(data,function(d) {
-            return d.total;
-        })]);
+        var options = {
+            title: 'Company Performance',
+            curveType: 'function',
+            legend: { position: 'bottom' }
+        };
 
-        console.log("selectAll, height:" + barHeight * data.length);
-        var chart = d3.select('#reportsWrapper')
-            .attr("width",width*2)
-            .attr("height", barHeight * data.length);
+        var chart = new google.visualization.LineChart(document.getElementById('reportsWrapper'));
 
-        var bar = chart.selectAll("g")
-            .data(data).enter()
-            .append("g").attr("transform",function(d,i){
-                return "translate(0," + i * barHeight + ")";
-            });
-
-        bar.append("rect")
-            .attr("width", function(d){
-                return x(d.total);
-            })
-            .attr("height", barHeight - 1);
-
-        bar.append("text")
-            .attr("x", function(d) { return 25; })
-            .attr("y", barHeight / 2)
-            .attr("dy", ".35em")
-            .text(function(d) { return d.day+"th"; });
+        chart.draw(data, options);
     }
-
-    $.ajax({
-        url: '/reports/salesByDay',
-        success: function(response){
-            initializeBarGraph(response);
-        }
-    })
-    // d3.select('#reportsWrapper')
-    //     .selectAll('div')
-    //     .data(data)
-    //     .enter().append('div')
-    //     .style("width", function(d){
-    //         return d * 2 +"px"
-    //     })
-    //     .text(function(d){
-    //         return d;
-    //     });
 </script>
 @endpush
