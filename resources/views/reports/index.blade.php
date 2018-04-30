@@ -30,23 +30,31 @@
     google.charts.setOnLoadCallback(drawChart);
 
     function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-            ['Year', 'Sales', 'Expenses'],
-            ['2004',  1000,      400],
-            ['2005',  1170,      460],
-            ['2006',  660,       1120],
-            ['2007',  1030,      540]
-        ]);
+        $.ajax({
+            url: '/reports/salesByDay',
+            success: function(response){
+                var unprocessedData = [
+                    ['Day', 'Sales']
+                ];
 
-        var options = {
-            title: 'Company Performance',
-            curveType: 'function',
-            legend: { position: 'bottom' }
-        };
+                response.forEach(function(d){
+                    unprocessedData.push([d.day, parseInt(d.total)]);
+                });
+                console.log(unprocessedData);
 
-        var chart = new google.visualization.LineChart(document.getElementById('reportsWrapper'));
+                var data = google.visualization.arrayToDataTable(unprocessedData);
+                var options = {
+                    title: 'Sales Per Day',
+                    curveType: 'function',
+                    legend: 'right',
+                    pointSize: 5
+                };
 
-        chart.draw(data, options);
+                var chart = new google.visualization.LineChart(document.getElementById('reportsWrapper'));
+
+                chart.draw(data, options);
+            }
+        });
     }
 </script>
 @endpush
