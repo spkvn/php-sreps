@@ -30,6 +30,15 @@ class ReportsController extends Controller
         return response()->json($sales,200);
     }
 
+    public function allSalesForDate(Request $request)
+    {
+        $sales = Sales::addSelect(\DB::raw("INT(id) as `id`, VARCHAR(customer) as `customer`, INT(total) as `total`, DATE(created_at) as `day`"))
+            ->whereDate('created_at', '>=', $request->start ?? "1979-01-01") //Input OR 1979
+            ->whereDate('created_at', '<=', $request->stop ?? "2032-01-01")  //Input OR 2032
+            ->orderBy("id")
+            ->get();
+    }
+
     public function salesPredictions(Sale $sale)
     {
         //TODO: Figure out algorithm for predicting sales

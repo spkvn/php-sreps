@@ -39,10 +39,10 @@
                             <td>{{ $product->description }}</td>
                             <td><a class="btn btn-secondary" href="{{route('products.edit', $product->id)}}">Edit</a></td>
                             <td>
-                                <form class="delete-form" action="{{route('products.destroy',$product->id)}}" method="POST">
+                                <form class="delete-form" id="delete-form{{$product->id}}" action="{{route('products.destroy',$product->id)}}" method="POST">
                                     {{csrf_field()}}
                                 </form>
-                                <button class="delete-button btn btn-dark">Delete</button>
+                                <button class="delete-button btn btn-dark" type="submit" form="delete-form{{$product->id}}">Delete</button>
                             </td>
                         </tr>
                     @empty
