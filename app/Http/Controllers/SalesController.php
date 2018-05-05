@@ -3,6 +3,7 @@
 namespace PHPSREPS\Http\Controllers;
 
 use Illuminate\Http\Request;
+use PHPSREPS\Http\Requests\SaleRequest;
 use PHPSREPS\LineItem;
 use PHPSREPS\Product;
 use PHPSREPS\Sale;
@@ -44,7 +45,7 @@ class SalesController extends Controller
      * @param Request $request (Form Data)
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(SaleRequest $request)
     {
         $sale = Sale::create([
             'customer' => $request->customer,

@@ -29,18 +29,22 @@
                     <div class="col">
                         <label for="customer">Customer:</label>
                         <input type="text" name="customer" class="form-control" placeholder="Customer Name" required>
+                        @include('utilities.errors',['errors' => $errors->get('customer')])
                     </div>
                     <div class="col">
                         <label for="code">Code:</label>
                         <input type="text" name="code" id="product-code" class="form-control" placeholder="Sale Code">
+                        @include('utilities.errors',['errors' => $errors->get('code')])
                     </div>
                 </div>
                 <div class="row py-1">
                     <div class="col-9">
                         <p class="lead">Product:</p>
+                        @include('utilities.errors',['errors' => $errors->get('product_id')])
                     </div>
                     <div class="col-3">
                         <p class="lead">Quantity:</p>
+                        @include('utilities.errors',['errors' => $errors->get('quantity')])
                     </div>
                 </div>
                 <div class="row py-1 line-item">
