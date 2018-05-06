@@ -33,7 +33,6 @@ class ReportsController extends Controller
 
     public function generateSalesCSV()
     {
-        
         $headers = array(
             "Content-type" => "text/csv",
             "Content-Disposition" => "attachment; filename=file.csv",
@@ -46,14 +45,13 @@ class ReportsController extends Controller
         $columns = array('SalesID', 'Customer', 'Code', 'Quantity', 'Total', 'Date');
         $callback = function() use ($sales, $columns)
         {
-            error_log('hello');
             $file = fopen('php://output', 'w');
             fputcsv($file, $columns);
             foreach($sales as $sale) {
                 fputcsv($file, array($sale->id, 
                                     $sale->customer,
                                     $sale->code, 
-                                    $sale->quantity, 
+                                    $sale->lineItems[0]->quantity, 
                                     $sale->total, 
                                     $sale->created_at));
             }
