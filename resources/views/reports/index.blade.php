@@ -43,7 +43,8 @@
                 <input type="text" class="form-control" id="start-csv" placeholder="YYYY-MM-DD">
                 <input type="text" class="form-control" id="stop-csv" placeholder="YYYY-MM-DD">
             </form>
-            <button onclick="location.href = location.href + '/generateCSV'">Generate CSV</button>
+            <br />
+            <button class="px-5 bg-green fade-button" onclick="location.href = location.href + '/generateCSV'">Generate CSV</button>
 
         </div>
         <div class="col-4"></div>
