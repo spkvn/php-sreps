@@ -44,3 +44,5 @@ Route::post('/sales/{sale}/destroy', 'SalesController@destroy')->name('sales.des
 
 Route::get('/reports', 'ReportsController@index')->name('reports.index');
 Route::get('/reports/salesByDay', 'ReportsController@salesByDay')->name('reports.index');
+Route::get('/reports/generateCSV', 'ReportsController@generateSalesCSV')->name('reports.index');
+
